@@ -1,3 +1,24 @@
+import datetime
+
+
+class BankAccount:
+    def __init__(self, acc_type, name, address, number, initial_balance=0.0):
+        self.acc_type = acc_type
+        self.name = name
+        self.address = address
+        self.number = number
+        self.creation_date = datetime.datetime.now()
+        self.balance = initial_balance
+
+    def display_account_info(self):
+        print(f"Account Type: {self.acc_type}")
+        print(f"Account Holder: {self.name}")
+        print(f"Account Number: {self.number}")
+        print(f"Creation Date: {self.creation_date}")
+        print(f"Balance: {self.balance}")
+        print()
+
+
 class SimpleBankingApplication:
     def __init__(self):
         self.accounts = []
@@ -16,10 +37,16 @@ class SimpleBankingApplication:
         }
 
     def create_account(self, acc_type, name, address, number, initial_balance):
-        pass
+        new_account = BankAccount(acc_type, name, address, number, initial_balance)
+        self.accounts.append(new_account)
+        print("Account created successfully!")
 
     def display_all_accounts(self):
-        pass
+        if not self.accounts:
+            print("No accounts found.")
+        else:
+            for account in self.accounts:
+                account.display_account_info()
 
     def update_account(self, account_number, new_name, new_address):
         pass
