@@ -50,19 +50,39 @@ class SimpleBankingApplication:
                 account.display_account_info()
 
     def update_account(self, account_number, new_name, new_address):
-        pass
+        for account in self.accounts:
+            if account.number == account_number:
+                account.name = new_name
+                account.address = new_address
+                print("Account info updated successfully!")
+                return
+        print("Account not found.")
 
     def delete_account(self, account_number):
-        pass
+        for account in self.accounts:
+            if account.number == account_number:
+                self.accounts.remove(account)
+                print("Account deleted successfully!")
+                return
+        print("Account not found.")
 
     def deposit_amount(self, account_number, amount):
-        pass
+        for account in self.accounts:
+            if account.number == account_number:
+                account.balance += amount
+                account.display_account_info()
+                return
+        print("Account not found.")
 
     def withdraw_amount(self, account_number, amount):
         pass
 
     def search_account(self, account_number):
-        pass
+        for account in self.accounts:
+            if account.number == account_number:
+                account.display_account_info()
+                return
+        print("Account not found.")
 
     def exit_application(self):
         print("Exiting the application.")
@@ -97,7 +117,7 @@ class SimpleBankingApplication:
                     elif choice == "3":
                         account_number = input("Enter account number to update: ")
                         new_address = input("Enter account holder's address: ")
-                        new_name = input("Enter new account holder's name: ")
+                        new_name = input("Enter account holder's name: ")
                         chosen_function(account_number, new_name, new_address)
 
                     elif choice == "4":
