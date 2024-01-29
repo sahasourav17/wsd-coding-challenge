@@ -73,7 +73,11 @@ class SimpleBankingApplication:
         pass
 
     def search_account(self, account_number):
-        pass
+        for account in self.accounts:
+            if account.number == account_number:
+                account.display_account_info()
+                return
+        print("Account not found.")
 
     def exit_application(self):
         print("Exiting the application.")
