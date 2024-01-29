@@ -67,7 +67,12 @@ class SimpleBankingApplication:
         print("Account not found.")
 
     def deposit_amount(self, account_number, amount):
-        pass
+        for account in self.accounts:
+            if account.number == account_number:
+                account.balance += amount
+                account.display_account_info()
+                return
+        print("Account not found.")
 
     def withdraw_amount(self, account_number, amount):
         pass
