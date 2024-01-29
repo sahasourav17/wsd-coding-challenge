@@ -59,7 +59,12 @@ class SimpleBankingApplication:
         print("Account not found.")
 
     def delete_account(self, account_number):
-        pass
+        for account in self.accounts:
+            if account.number == account_number:
+                self.accounts.remove(account)
+                print("Account deleted successfully!")
+                return
+        print("Account not found.")
 
     def deposit_amount(self, account_number, amount):
         pass
