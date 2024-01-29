@@ -14,6 +14,7 @@ class BankAccount:
         print(f"Account Type: {self.acc_type}")
         print(f"Account Holder: {self.name}")
         print(f"Account Number: {self.number}")
+        print(f"Account Holder's Address: {self.address}")
         print(f"Creation Date: {self.creation_date}")
         print(f"Balance: {self.balance}")
         print()
