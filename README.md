@@ -47,7 +47,9 @@ Programming language is optional but you may use a JAVA console application.
   ```
 
 ## Run the Application
-
+### Run Online: 
+  https://replit.com/@sahasourav1170/wsd-coding-challenge-solution
+### Run on Local Machine:
 ```bash
 python3 solution.py
 ```
