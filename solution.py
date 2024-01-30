@@ -19,6 +19,11 @@ class BankAccount:
         print(f"Balance: {self.balance}")
         print()
 
+    def can_withdraw(self, amount):
+        MIN_BALANCES = {"savings": 1000.0, "current": 500.0, "salary": 0.0}
+        min_balance = MIN_BALANCES.get(self.acc_type, 0.0)
+        return self.balance - amount >= min_balance
+
 
 class SimpleBankingApplication:
     def __init__(self):
@@ -75,7 +80,19 @@ class SimpleBankingApplication:
         print("Account not found.")
 
     def withdraw_amount(self, account_number, amount):
-        pass
+        for account in self.accounts:
+            if account.number == account_number:
+                if account.can_withdraw(amount):
+                    account.balance -= amount
+                    print(
+                        f"Successfully {amount} Tk. withdrawn from your account. \nNew balance: {account.balance}"
+                    )
+                else:
+                    print(
+                        "Not enough money to maintain minimum balance after withdrawal."
+                    )
+                return
+        print("Account not found.")
 
     def search_account(self, account_number):
         for account in self.accounts:
