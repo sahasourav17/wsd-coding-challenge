@@ -26,3 +26,28 @@ No need to use any database.
 ### General Instructions
 
 Programming language is optional but you may use a JAVA console application.
+
+## Setup Instructions
+
+- Create a new python environment
+
+  ```bash
+  python3 -m venv env
+  ```
+
+- Activate the environment
+
+  ```bash
+  source env/bin/activate
+  ```
+
+- Install the dependencies
+  ```bash
+  pip install -r requirements.txt
+  ```
+
+## Run the Application
+
+```bash
+python3 solution.py
+```
