@@ -1,4 +1,5 @@
 import datetime
+from tabulate import tabulate
 
 
 class BankAccount:
@@ -11,13 +12,16 @@ class BankAccount:
         self.balance = initial_balance
 
     def display_account_info(self):
-        print(f"Account Type: {self.acc_type}")
-        print(f"Account Holder: {self.name}")
-        print(f"Account Number: {self.number}")
-        print(f"Account Holder's Address: {self.address}")
-        print(f"Creation Date: {self.creation_date}")
-        print(f"Balance: {self.balance}")
-        print()
+        data = [
+            ["Account Type", self.acc_type],
+            ["Account Holder", self.name],
+            ["Account Holder's Address", self.address],
+            ["Account Number", self.number],
+            ["Creation Date", self.creation_date.strftime("%Y-%m-%d %H:%M:%S")],
+            ["Balance", f"{self.balance:.2f} Tk."],
+        ]
+        table = tabulate(data, headers=["Field", "Details"], tablefmt="fancy_grid")
+        print(f"{table}\n")
 
     def can_withdraw(self, amount):
         MIN_BALANCES = {"savings": 1000.0, "current": 500.0, "salary": 0.0}
@@ -51,6 +55,7 @@ class SimpleBankingApplication:
         if not self.accounts:
             print("No accounts found.")
         else:
+            print(f"\n=================== Accounts ===================\n")
             for account in self.accounts:
                 account.display_account_info()
 
@@ -97,6 +102,7 @@ class SimpleBankingApplication:
     def search_account(self, account_number):
         for account in self.accounts:
             if account.number == account_number:
+                print(f"\n================ Account Info ================\n")
                 account.display_account_info()
                 return
         print("Account not found.")
