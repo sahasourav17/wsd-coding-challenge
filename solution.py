@@ -24,7 +24,7 @@ class BankAccount:
         print(f"{table}\n")
 
     def can_withdraw(self, amount):
-        MIN_BALANCES = {"savings": 1000.0, "current": 500.0, "salary": 0.0}
+        MIN_BALANCES = {"Savings": 1000.0, "Current": 500.0, "Salary": 0.0}
         min_balance = MIN_BALANCES.get(self.acc_type, 0.0)
         return self.balance - amount >= min_balance
 
@@ -33,6 +33,8 @@ class SimpleBankingApplication:
     def __init__(self):
         self.accounts = []
         self.initialize_choices()
+
+    MIN_BALANCES = {"Savings": 1000.0, "Current": 500.0, "Salary": 0.0}
 
     def initialize_choices(self):
         self.choices = {
@@ -47,13 +49,18 @@ class SimpleBankingApplication:
         }
 
     def create_account(self, acc_type, name, address, number, initial_balance):
+        if initial_balance < self.MIN_BALANCES.get(acc_type):
+            print(
+                f"\n\nThis account requires a minimum amount of {self.MIN_BALANCES.get(acc_type)} Tk. \nPlease increase the amount\n\n"
+            )
+            return
         new_account = BankAccount(acc_type, name, address, number, initial_balance)
         self.accounts.append(new_account)
-        print("Account created successfully!")
+        print("\n\nAccount created successfully!\n\n")
 
     def display_all_accounts(self):
         if not self.accounts:
-            print("No accounts found.")
+            print("\n\nNo accounts found.\n\n")
         else:
             print(f"\n=================== Accounts ===================\n")
             for account in self.accounts:
@@ -64,17 +71,17 @@ class SimpleBankingApplication:
             if account.number == account_number:
                 account.name = new_name
                 account.address = new_address
-                print("Account info updated successfully!")
+                print("\n\nAccount info updated successfully!\n\n")
                 return
-        print("Account not found.")
+        print("\n\nAccount not found.\n\n")
 
     def delete_account(self, account_number):
         for account in self.accounts:
             if account.number == account_number:
                 self.accounts.remove(account)
-                print("Account deleted successfully!")
+                print("\n\nAccount deleted successfully!\n\n")
                 return
-        print("Account not found.")
+        print("\n\nAccount not found.\n\n")
 
     def deposit_amount(self, account_number, amount):
         for account in self.accounts:
@@ -82,7 +89,7 @@ class SimpleBankingApplication:
                 account.balance += amount
                 account.display_account_info()
                 return
-        print("Account not found.")
+        print("\n\nAccount not found.\n\n")
 
     def withdraw_amount(self, account_number, amount):
         for account in self.accounts:
@@ -90,14 +97,14 @@ class SimpleBankingApplication:
                 if account.can_withdraw(amount):
                     account.balance -= amount
                     print(
-                        f"Successfully {amount} Tk. withdrawn from your account. \nNew balance: {account.balance}"
+                        f"\n\nSuccessfully {amount} Tk. withdrawn from your account. \nNew balance: {account.balance}\n\n"
                     )
                 else:
                     print(
-                        "Not enough money to maintain minimum balance after withdrawal."
+                        "\n\nNot enough money to maintain minimum balance after withdrawal.\n\n"
                     )
                 return
-        print("Account not found.")
+        print("\n\nAccount not found.\n\n")
 
     def search_account(self, account_number):
         for account in self.accounts:
@@ -105,30 +112,57 @@ class SimpleBankingApplication:
                 print(f"\n================ Account Info ================\n")
                 account.display_account_info()
                 return
-        print("Account not found.")
+        print("\n\nAccount not found.\n\n")
 
     def exit_application(self):
-        print("Exiting the application.")
+        print("\n\nExiting the application.\n\n")
         exit()
 
     def run_application(self):
         while True:
-            print("1. Create a new account")
-            print("2. Display all accounts")
-            print("3. Update an account")
-            print("4. Delete an account")
-            print("5. Deposit an amount into your account")
-            print("6. Withdraw an amount from your account")
-            print("7. Search for account")
-            print("8. Exit")
-
             try:
+                options = [
+                    ["1", "Create a new account"],
+                    ["2", "Display all accounts"],
+                    ["3", "Update an account"],
+                    ["4", "Delete an account"],
+                    ["5", "Deposit an amount into your account"],
+                    ["6", "Withdraw an amount from your account"],
+                    ["7", "Search for account"],
+                    ["8", "Exit"],
+                ]
+
+                print(
+                    tabulate(
+                        options,
+                        headers=["Choice", "Function"],
+                        tablefmt="fancy_grid",
+                    )
+                )
                 choice = input("Enter your choice (1-8): ")
 
                 chosen_function = self.choices.get(choice)
                 if chosen_function:
                     if choice == "1":
+                        print("\nAvaliable account types")
+                        account_options = [
+                            [acc_type, f"{balance:.2f} Tk."]
+                            for acc_type, balance in self.MIN_BALANCES.items()
+                        ]
+                        print(
+                            tabulate(
+                                account_options,
+                                headers=["Account Type", "Min Balance Required"],
+                                tablefmt="fancy_grid",
+                            )
+                        )
+
                         acc_type = input("Enter account type: ")
+                        if acc_type.capitalize() not in self.MIN_BALANCES:
+                            print(
+                                "\nInvalid account type. Please select correct account type \n"
+                            )
+                            return
                         name = input("Enter account holder's name: ")
                         address = input("Enter account holder's address: ")
                         number = input("Enter account number: ")
