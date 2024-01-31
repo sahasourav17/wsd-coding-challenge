@@ -27,6 +27,93 @@ No need to use any database.
 
 Programming language is optional but you may use a JAVA console application.
 
+## Take a glimse of the solution:
+```bash
+╒══════════╤══════════════════════════════════════╕
+│   Choice │ Function                             │
+╞══════════╪══════════════════════════════════════╡
+│        1 │ Create a new account                 │
+├──────────┼──────────────────────────────────────┤
+│        2 │ Display all accounts                 │
+├──────────┼──────────────────────────────────────┤
+│        3 │ Update an account                    │
+├──────────┼──────────────────────────────────────┤
+│        4 │ Delete an account                    │
+├──────────┼──────────────────────────────────────┤
+│        5 │ Deposit an amount into your account  │
+├──────────┼──────────────────────────────────────┤
+│        6 │ Withdraw an amount from your account │
+├──────────┼──────────────────────────────────────┤
+│        7 │ Search for account                   │
+├──────────┼──────────────────────────────────────┤
+│        8 │ Exit                                 │
+╘══════════╧══════════════════════════════════════╛
+Enter your choice (1-8): 1
+
+Avaliable account types
+╒════════════════╤════════════════════════╕
+│ Account Type   │ Min Balance Required   │
+╞════════════════╪════════════════════════╡
+│ Savings        │ 1000.00 Tk.            │
+├────────────────┼────────────────────────┤
+│ Current        │ 500.00 Tk.             │
+├────────────────┼────────────────────────┤
+│ Salary         │ 0.00 Tk.               │
+╘════════════════╧════════════════════════╛
+Enter account type: Savings
+Enter account holder's name: Sourav Saha
+Enter account holder's address: Baridhara DOHS
+Enter account number: 121212
+Enter initial balance: 200
+
+
+This account requires a minimum amount of 1000.0 Tk. 
+Please increase the amount
+
+
+╒══════════╤══════════════════════════════════════╕
+│   Choice │ Function                             │
+╞══════════╪══════════════════════════════════════╡
+│        1 │ Create a new account                 │
+├──────────┼──────────────────────────────────────┤
+│        2 │ Display all accounts                 │
+├──────────┼──────────────────────────────────────┤
+│        3 │ Update an account                    │
+├──────────┼──────────────────────────────────────┤
+│        4 │ Delete an account                    │
+├──────────┼──────────────────────────────────────┤
+│        5 │ Deposit an amount into your account  │
+├──────────┼──────────────────────────────────────┤
+│        6 │ Withdraw an amount from your account │
+├──────────┼──────────────────────────────────────┤
+│        7 │ Search for account                   │
+├──────────┼──────────────────────────────────────┤
+│        8 │ Exit                                 │
+╘══════════╧══════════════════════════════════════╛
+Enter your choice (1-8): 1
+
+Avaliable account types
+╒════════════════╤════════════════════════╕
+│ Account Type   │ Min Balance Required   │
+╞════════════════╪════════════════════════╡
+│ Savings        │ 1000.00 Tk.            │
+├────────────────┼────────────────────────┤
+│ Current        │ 500.00 Tk.             │
+├────────────────┼────────────────────────┤
+│ Salary         │ 0.00 Tk.               │
+╘════════════════╧════════════════════════╛
+Enter account type: Current
+Enter account holder's name: Sourav Saha
+Enter account holder's address: Baridhara
+Enter account number: 121212
+Enter initial balance: 600
+
+
+Account created successfully!
+
+```
+
+
 ## Setup Instructions
 
 - Create a new python environment
